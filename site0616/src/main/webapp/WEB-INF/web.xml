@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>site0616</display-name>
+	
+	<!--서블릿 매핑-->
+	<servlet>
+		<servlet-name>myServlet</servlet-name>
+		<servlet-class>site0616.test.MyServlet</servlet-class>
+		<!-- 서블릿의 init 메서드로 전달하고픈 문자열 데이터를 여기서 설정할 수 있음 -->
+		<init-param>
+			<param-name>msg</param-name>
+			<param-value>나는 서블릿이다</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>myServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+</web-app>
