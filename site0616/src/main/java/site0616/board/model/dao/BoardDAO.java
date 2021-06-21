@@ -81,6 +81,8 @@ public class BoardDAO {
 		return list;		
 	}
 	
+
+	
 	//레코드 한건가져오기
 	public Board select(int board_id) {
 		Board board = null;

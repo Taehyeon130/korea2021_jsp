@@ -53,8 +53,7 @@ $(function(){
 
 function regist(){
 	$("form").attr({
-		//"action":"/gallery/upload.jsp",
-		"action":"/upload",
+		"action":"/photo/upload",
 		"enctype":"multipart/form-data",
 		"method":"post"
 	});	
@@ -67,7 +66,7 @@ function regist(){
 <h3>파일업로드 양식</h3>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form>
     <input type="text" 	name="title" 			placeholder="제목..">
     <input type="text" 	name="writer" 		placeholder="작성자..">
     <textarea 					name="content" 	placeholder="내용.." style="height:200px"></textarea>
