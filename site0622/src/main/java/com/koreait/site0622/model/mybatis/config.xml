@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.koreait.site0622.model.domain.Board" alias="Board"/>
+		<typeAlias type="com.koreait.site0622.model.domain.Member" alias="Member"/>
+	</typeAliases>
+	
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="JNDI">
+      	<property name="data_source" value="java:comp/env/jndi/mysql"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/koreait/site0622/model/mybatis/BoardMapper.xml"/>
+    <mapper resource="com/koreait/site0622/model/mybatis/MemberMapper.xml"/>
+  </mappers>
+</configuration>

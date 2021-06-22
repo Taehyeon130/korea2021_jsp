@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<!-- 게시물 한 건 등록 -->
+	<insert id="insert" parameterType="Board">
+		insert into board(title,writer,content) values(#{title},#{writer},#{content})
+	</insert>
+	
+	<!-- 모든 레코드 가져오기 resultType은 어떤 VO에 매핑 시킬지 결정-->
+	<select id="selectAll" resultType="Board">
+		select *from board order by board_id desc
+	</select>
+	
+	<!-- 레코드 한 건 가져오기 -->
+	<select id="select" parameterType="int" resultType="Board">
+		select *from board where board_id=#{board_id}
+	</select>
+	
+	<!-- 레코드 한 건 수정 
+		파라미터로 지정된 VO의 멤버변수명과 sql에 명시한 변수명이 같아야 자동 매핑이 일어난다
+		결국 Mybatis 프레임웤의 목적은 자바 객체와 SQL문간 자동 매핑에 있다-->
+	<update id="update" parameterType="Board">
+		update board set title=#{title}, writer=#{writer}, content=#{content} where board_id=#{board_id}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board where board_id=#{board_id}
+	</delete>
+</mapper>
