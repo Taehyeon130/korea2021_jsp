@@ -1,0 +1,24 @@
+[ javaEE]
+- 오라클사에서 별도의 개발툴킷을 설치하지 않음
+- jsp라는 기술이 실행될 환경인 서버는 sun에서 독점하지 않음 
+  유료 : JEUS, WebLogic, JBoss(지원 서비스O)
+          Resin(WAS가 아닌 웹컨테이라 불린다)
+
+  무료 : JBoss(지원서비스X 문제발생시 스스로 해결)
+          Tomcat(WAS가 아닌 웹컨테이라 불린다)
+
+- WAS vs Web Container ?? 
+Web Container : java EE기술을 이해하는 웹서버 
+WAS(Web Application Server) : Web Container+EJB 기타서비스
+-------------------------------------------------------------------
+[ jsp ]
+- 우리가 이미 배웠던 node.js와 굳이 비유하자면, ejs와 목적이 같다~!!
+- Java Server Page : java언어로 작성된 서버에서만 실행되는 페이지
+
+[jsp페이지 코드 작성 영역]
+1.지시영역 
+   @가 붙는다
+
+2.선언부
+3.스크립틀릿
+4.표현식

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Emp">
+<!-- Mybatis의 매핑은 아무것도 명시하지 않으면 자동매핑이다!!
+	하지만 개발자가 수동으로 매핑하는 방법도 지원
+ -->
+ 	<resultMap type="Emp" id="empMap">
+ 		<id column="empno" property="empno"/>
+ 		<result column="ename" property="ename"/>
+ 		<result column="job" property="job"/>
+ 		<result column="mgr" property="manager"/>
+ 		<result column="hiredate" property="hiredate"/>
+ 		<result column="sal" property="sal"/>
+ 		<result column="comm" property="comm"/>
+ 		<!-- 부서의 정보로 채워져야함 -->
+ 		<association property="dept" column="deptno" javaType="int" select="Dept.select"/>
+ 	</resultMap>
+	<select id="selectAll" resultMap="empMap">
+		select *
+		from emp e, dept d
+		where e.deptno = d.deptno
+	</select>
+	
+</mapper>

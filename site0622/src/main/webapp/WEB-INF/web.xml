@@ -38,4 +38,24 @@
 		<servlet-name>checkIdServlet</servlet-name>
 		<url-pattern>/member/idcheck</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.member.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/member/login</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>writeServlet</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.news.RegistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>writeServlet</servlet-name>
+		<url-pattern>/news/regist</url-pattern>
+	</servlet-mapping>
 </web-app>

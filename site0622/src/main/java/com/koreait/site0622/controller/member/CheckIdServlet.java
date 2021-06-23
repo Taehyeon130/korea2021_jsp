@@ -30,15 +30,26 @@ public class CheckIdServlet extends HttpServlet{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		out.print("념겨받은 아이디는 "+user_id+"<br>");
+		//out.print("념겨받은 아이디는 "+user_id+"<br>");
 		Member member = memberDAO.getMemberById(user_id); //다형성
 		
+		/*
 		if(member ==null) {
 			//회원가입 진행
-			out.print(messageObject.getMsgURL("사용가능한 아이디 입니다","/member/signup.jsp"));
+			//동기방식에 적절한 응답정보
+			//out.print(messageObject.getMsgURL("사용가능한 아이디 입니다","/member/signup.jsp"));
 		}else {
 			//경고 거절
-			out.print(messageObject.getMsgBack("이미 사용중인 아이디 입니다"));
+			//동기방식에 적절한 응답정보
+			//out.print(messageObject.getMsgBack("이미 사용중인 아이디 입니다"));
+		}
+		*/
+		
+		//비동기에 적절한 응답 보내기
+		if(member==null) {
+			out.print(0);
+		}else {
+			out.print(1);
 		}
 	}
 }

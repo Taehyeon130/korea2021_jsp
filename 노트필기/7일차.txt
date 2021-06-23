@@ -1,0 +1,24 @@
+[ jsp의 숨겨진 동작원리 ]
+ - jsp는 곧 서블릿이다 
+ - jsp가 개발된 이유는 서블릿만으로 디자인처리하기엔 효율성이 떨어짐
+    ex)  out.print("<table>");
+    따라서  html과 java 를 섞어쓸수 있는 스크립트를 개발하게 됨 (php, asp 비슷)
+ - 하지만, 작성만 편했을뿐, 사실 실시간으로 jsp가 톰켓과 같은 웹컨테이너에 의해 .java 서블릿으로
+   변환되고 컴파일되어 진다..(시점은? jsp를서버에 배포 후 최초의 클라이언트 요청이 있을때..)
+
+ - 내장객체 (Built-In Object)
+   서블릿을 직접 사용하지 않으므로, 서블릿에서 사용해왔던 각종 객체들의 레퍼런스 변수명을
+   javaEE 에서 정해놓은 , 즉 이미 정해진 명칭의 객체들을 가리켜 내장객체라 한다..
+   총 10개 안팎임..
+   요청객체 :  request객체
+   응답객체 :  response객체 
+   출력스트림:  out 객체 
+
+   service(HttpServletRequest request, HttpServletResponse response){
+       PrintWriter pw = response.getWriter();
+   }
+
+[ 서블릿 생명주기 ]
+init() : 생성자 아님, 생성자 호출 후, 초기화 시 호출됨 
+service()
+destory()

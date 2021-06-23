@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="News">
+	<insert id="insert" parameterType="News">
+		insert into news(title,writer,content) values(#{title},#{writer},#{content})
+	</insert>
+	
+	<resultMap type="News" id="newsMap">
+		<id column="news_id" property="news_id"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="content" property="content"/>
+		<result column="regdate" property="regdate"/>
+		<result column="hit" property="hit"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="newsMap">
+		select *from news order by news_id desc
+	</select>
+</mapper>

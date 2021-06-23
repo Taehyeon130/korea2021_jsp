@@ -15,8 +15,7 @@ public class MyServlet extends HttpServlet{
 	//그리고 이 ServletConfig객체는 톰캣에 의해 생성되어 서블릿에게 전달되어 진다.
 	public void init(ServletConfig config) throws ServletException {
 		String msg = config.getInitParameter("msg");
-		System.out.println(msg);
-		
+		System.out.println(msg);	
 	}
 	
 	//요청을 처리하는 메서드

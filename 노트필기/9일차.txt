@@ -1,0 +1,19 @@
+[ 파일업로드 ]
+cos.jar : oreilly사에서 제작한 javaEE기반의 업로드 컴포넌트
+apache fileupload : 아파치 재단 프로젝트 
+
+어플리케이션의 정보를 가진 객체?
+ServletConext : 해당 servlet이 실행되고 있는 어플리케이션
+
+ServletConfig : 서블릿이 초기화될때 호출되는 init()으로 넘겨받는 매개변수
+		       이 객체를 이용하여 서블릿이 서블릿으로써 업무처리시 알아야할 각종 
+		       정보들을 넘겨받을 수 있다.
+
+create table board(
+  board_id int primary key auto_increment
+, title varchar(100)
+, writer varchar(20)
+, content text 
+, regdate timestamp default now()
+, hit int default 0
+) default character set utf8;
