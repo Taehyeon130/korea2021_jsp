@@ -21,7 +21,7 @@
 		<url-pattern>/board/edit</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>deleteServlet</servlet-name>
 		<servlet-class>com.koreait.site0622.controller.board.DeleteServlet</servlet-class>
 	</servlet>
@@ -39,7 +39,6 @@
 		<url-pattern>/member/idcheck</url-pattern>
 	</servlet-mapping>
 	
-	
 	<servlet>
 		<servlet-name>loginServlet</servlet-name>
 		<servlet-class>com.koreait.site0622.controller.member.LoginServlet</servlet-class>
@@ -48,8 +47,7 @@
 		<servlet-name>loginServlet</servlet-name>
 		<url-pattern>/member/login</url-pattern>
 	</servlet-mapping>
-	
-	
+
 	<servlet>
 		<servlet-name>writeServlet</servlet-name>
 		<servlet-class>com.koreait.site0622.controller.news.RegistServlet</servlet-class>
@@ -58,4 +56,23 @@
 		<servlet-name>writeServlet</servlet-name>
 		<url-pattern>/news/regist</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>registComments</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.comments.RegistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registComments</servlet-name>
+		<url-pattern>/comments/regist</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>listComments</servlet-name>
+		<servlet-class>com.koreait.site0622.controller.comments.ListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listComments</servlet-name>
+		<url-pattern>/comments/list</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

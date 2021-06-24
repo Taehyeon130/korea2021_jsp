@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Comments">
-
+	<!-- 댓글 등록 -->
+	<insert id="insert" parameterType="Comments">
+		insert into comments(msg, cwriter, news_id) values(#{msg},#{cwriter},#{news_id})
+	</insert>
 	
+	<!-- 해당 뉴스에 등록된 댓글 가져오기 -->
+	<select id="selectByNewsId" resultType="Comments" parameterType="int">
+		select *from comments where news_id=#{news_id}
+	</select>
 </mapper>

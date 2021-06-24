@@ -26,10 +26,12 @@ public class MybatisNewsDAO implements NewsDAO{
 		return list;
 	}
 
-	@Override
+	
 	public News select(int news_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = configManager.getSession();
+		News news = sqlSession.selectOne("News.select",news_id);
+		configManager.closeSession(sqlSession);
+		return news;
 	}
 
 	@Override
