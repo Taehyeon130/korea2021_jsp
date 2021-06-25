@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>site0625</display-name>
+  
+  <servlet>
+  	<servlet-name>registServlet</servlet-name>
+  	<servlet-class>com.koreait.site0625.controller.reboard.RegistServlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>registServlet</servlet-name>
+		<url-pattern>/reboard/regist</url-pattern>
+	</servlet-mapping>
+	
+	
+	  <servlet>
+  	<servlet-name>replyServlet</servlet-name>
+  	<servlet-class>com.koreait.site0625.controller.reboard.ReplyServlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>replyServlet</servlet-name>
+		<url-pattern>/reboard/reply</url-pattern>
+	</servlet-mapping>
+</web-app>

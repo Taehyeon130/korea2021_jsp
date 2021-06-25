@@ -54,12 +54,13 @@ input[type=button]:hover {
 		render(){
 			//return 영역 밖에서 원하는 태그를 구성한 후, 완성된 태그를 return안에서 사용하면 된다..
 			var tag=[];
-			for(var i=0;i<10;i++){
+			for(var i=0;i<this.props.result.commentsList.length;i++){
+				var obj = this.props.result.commentsList[i];
 				tag.push(
 				<div>
-					<input type="text" value={i}/>
-					<input type="text" value={0}/>
-					<input type="text" value={0}/>
+					<input type="text" value={obj.msg}  style={{width:"60%"}}/>
+					<input type="text" value={obj.cwriter} style={{width:"20%"}}/>
+					<input type="text" value={obj.cdate} style={{width:"15%"}}/>
 				</div>
 				);
 			}
@@ -68,6 +69,7 @@ input[type=button]:hover {
 						</div>
 		}
 	}
+
 $(function(){
 	
 	CKEDITOR.replace("content");
@@ -126,7 +128,7 @@ function getCommentsList(){
 			
 			//넘겨받은 데이터가 json 자체일 경우는 파싱할 필요없다
 			console.log(result);	
-			ReactDOM.render(<CustomComments/> , document.getElementById("commentsArea"))
+			ReactDOM.render(<CustomComments result={result}/> , document.getElementById("commentsArea"))
 		}
 	});
 }

@@ -1,4 +1,4 @@
-<%@page import="com.koreait.site0622.util.message.MessageObject"%>
+<%@page import="com.koreait.site0625.util.message.MessageObject"%>
 <%@page import="com.koreait.site0622.model.member.dao.MybatisMemberDAO"%>
 <%@page import="com.koreait.site0622.model.member.dao.MemberDAO"%>
 <%@page import="com.koreait.site0622.model.domain.Member"%>
