@@ -53,6 +53,7 @@ function reply(){
 	<input type="hidden" name = "team" value="<%=team%>">
 	<input type="hidden" name = "step" value="<%=step%>">
 	<input type="hidden" name = "depth" value="<%=depth%>">
+	
 		<table id="box" align="center" width="603" border="0" cellpadding="0"
 			cellspacing="0">
 			<tr>

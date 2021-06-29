@@ -10,7 +10,6 @@ public interface ReBoardDAO {
 	public ReBoard select(int reboard_id);
 	public int update(ReBoard reboard);
 	public int delete(int reboard_id);
-	public int updateStep(ReBoard reboard);//답변 자리 확보
 	public int reply(ReBoard reboard);//답변 등록
 	
 }

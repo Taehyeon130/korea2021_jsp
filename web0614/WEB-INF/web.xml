@@ -28,12 +28,12 @@
   </description>
 
 	<!-- 서블릿 매핑-->
-	<servlet>
+	<servlet> <!-- 서블릿에 대한 설명-->
 		<servlet-name>test</servlet-name>
-		<servlet-class>test.MyServlet.class</servlet-class>
+		<servlet-class>test.MyServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>test</servlet-name>
-		<url-pattern>/hi</url-pattern>
+		<servlet-name>test</servlet-name> <!--이름 지정 맘대루 -->
+		<url-pattern>/hi</url-pattern> <!--url만들기 가상 -->
 	</servlet-mapping>
 </web-app>

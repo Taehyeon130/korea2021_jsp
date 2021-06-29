@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.wrapper{
+		width: 1000px;
+		height: 700px;
+		background-color: pink;
+		margin:auto;
+		overflow: hidden;
+	}
+	.leftSide{
+		width: 200px;
+		height: 100%;
+		background-color: powderblue;
+		float: left;
+	}
+	#content{
+		width: 800px;
+		height: 100%;
+		background-color: thistle;
+		float: left;
+	}
+	.leftSide *{
+		width:95%;
+		margin:auto;
+		margin-top: 10px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+var map;
+var posArray=new Array(5);
+//alert(posArray.length);
+function initMap(){
+	//좌표 배열에 데이터 넣기
+	//posArray[0] = new google.maps.LatLng(51.515542,-0.120550);
+//	posArray[1] = new google.maps.LatLng(51.536642,-0.140650);
+	//posArray[2] = new google.maps.LatLng(51.557742,-0.160750);
+	//posArray[3] = new google.maps.LatLng(51.578842,-0.180850);
+	//posArray[4] = new google.maps.LatLng(51.599942,-0.200950);
+
+	var mapProp= {
+	  center:new google.maps.LatLng(37.575700530370874, 126.97649662154176),
+	  zoom:17,
+	};
+	
+	//맵 객체 생성
+	map = new google.maps.Map(document.getElementById("content"),mapProp);
+}
+	
+//마커 생성
+function createMarker(json){
+	//서버로부터 받은 json을 이용하여 마커생성
+	console.log(json);
+	
+	for (var i = 0; i <json.item.length ; i++) {
+			var obj = json.item[i]; //배열에 들어있는 json객체를 하나 끄집어 낸다(하나의 관광명소)
+		
+		
+			//마커 생성
+			var marker = new google.maps.Marker({position : new google.maps.LatLng(obj.mapy,obj.mapx )});
+			marker.setMap(map);
+
+			//팝업 윈도우 생성
+			var infowindow = new google.maps.InfoWindow({
+				content : "<img src='"+obj.firstimage+"' width='70px'>"
+			});
+			infowindow.open(map, marker); //어느 맵, 어느 마커에 연결할지 결정
+		}	
+}
+
+//지도에 표시할 관광정보를 요청하되 공공데이터 포털로부터 가져온다!!
+function loadFromXML(){
+	//jsp, 서블릿에 데이터 요청하기(새로고침없이 비동기 방식으로 요청하자)
+	$.ajax({
+		"url":"/place/list",
+		"type":"get",
+		"success":function(result,status,xhr){
+			//json으로 결과를 받아야함
+			
+			//서버로부터 받은 데이터가 json문자열인 경우 파싱을 해야한다
+			var json =JSON.parse(result);
+			//console.log(json);
+			createMarker(json);
+		}
+	});
+}
+</script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="leftSide">
+			<input type="button" value="공공 데이터 Load" onClick="loadFromXML()">
+			<p>
+			<p>
+			<!-- 
+			<select>
+				<option>시.도 선택</option>
+			</select>
+			<select>
+				<option>구.군 선택</option>
+			</select>
+			-->
+			<input type="text" placeholder="제목...">
+			<textarea placeholder="내용..." style="height:200px"></textarea>
+			<input type="text" placeholder="위도...">
+			<input type="text" placeholder="경도...">
+			<input type="file">
+			<p>
+			<input type="button" value="썸네일 등록">
+			
+		</div>
+		<div id="content">우측</div>
+	</div>
+
+</body>
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsvTMc_ou7hXT876Q9m-nSYOIA02G2yMI&callback=initMap"></script>
+
+
+
+
+
+

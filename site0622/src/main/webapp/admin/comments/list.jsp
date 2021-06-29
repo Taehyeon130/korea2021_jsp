@@ -1,4 +1,4 @@
-<%@page import="com.koreait.site0625.util.message.MessageObject"%>
+<%@page import="com.koreait.site0622.util.message.MessageObject"%>
 <%@ page  contentType="text/html; charset=UTF-8"%>
 <%!
 	MessageObject msg = new MessageObject();
