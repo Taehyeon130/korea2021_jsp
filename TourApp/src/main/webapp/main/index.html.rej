@@ -1,0 +1,10 @@
+diff a/TourApp/src/main/webapp/main/index.html b/TourApp/src/main/webapp/main/index.html	(rejected hunks)
+@@ -154,7 +154,7 @@
+ 
+ </body>
+ </html>
+-<script src="https://maps.googleapis.com/maps/api/js?key=yourservicekey&callback=initMap"></script>
++<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsvTMc_ou7hXT876Q9m-nSYOIA02G2yMI&callback=initMap"></script>
+ 
+ 
+ 
