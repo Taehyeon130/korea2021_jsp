@@ -33,71 +33,104 @@
 <script type="text/javascript">
 var map;
 var posArray=new Array(5);
-//alert(posArray.length);
-function initMap(){
-	//좌표 배열에 데이터 넣기
-	//posArray[0] = new google.maps.LatLng(51.515542,-0.120550);
-//	posArray[1] = new google.maps.LatLng(51.536642,-0.140650);
-	//posArray[2] = new google.maps.LatLng(51.557742,-0.160750);
-	//posArray[3] = new google.maps.LatLng(51.578842,-0.180850);
-	//posArray[4] = new google.maps.LatLng(51.599942,-0.200950);
 
+function initMap() {
 	var mapProp= {
-	  center:new google.maps.LatLng(37.575700530370874, 126.97649662154176),
-	  zoom:17,
+	  center:new google.maps.LatLng(37.572729, 126.976854),
+	  zoom:15,
 	};
 	
 	//맵 객체 생성
-	map = new google.maps.Map(document.getElementById("content"),mapProp);
+	map = new google.maps.Map(document.getElementById("content"), mapProp);
 }
-	
-//마커 생성
+
+//마커생성
 function createMarker(json){
-	//서버로부터 받은 json을 이용하여 마커생성
-	console.log(json);
+	//서버로부터 받은 json을 이용하여 마커생성 
 	
-	for (var i = 0; i <json.item.length ; i++) {
-			var obj = json.item[i]; //배열에 들어있는 json객체를 하나 끄집어 낸다(하나의 관광명소)
+	console.log("넘겨받은 제이슨 ", json);
+	
+	for(var i=0;i<json.item.length;i++){
+		var obj=json.item[i]; //배열에 들어있는 json 객체를 하나 끄집어 낸다(하나의 관광명소)
 		
+		//마커 생성
+		var marker = new google.maps.Marker({position: new google.maps.LatLng(obj.mapy, obj.mapx)});
+		marker.setMap(map);
 		
-			//마커 생성
-			var marker = new google.maps.Marker({position : new google.maps.LatLng(obj.mapy,obj.mapx )});
-			marker.setMap(map);
+		//팝업 윈도우 생성
+		var infowindow = new google.maps.InfoWindow({
+			content:"<img src='"+obj.firstimage+"' width='50px'>"
+		});
+		infowindow.open(map, marker);	//어느맵에, 어느 마커에 연결할지 결정
+	}
+} 
 
-			//팝업 윈도우 생성
-			var infowindow = new google.maps.InfoWindow({
-				content : "<img src='"+obj.firstimage+"' width='70px'>"
-			});
-			infowindow.open(map, marker); //어느 맵, 어느 마커에 연결할지 결정
-		}	
-}
-
-//지도에 표시할 관광정보를 요청하되 공공데이터 포털로부터 가져온다!!
+//지도에 표시할 관광정보를 요청하되, 공공데이터 포털로부터 가져온다!!
 function loadFromXML(){
-	//jsp, 서블릿에 데이터 요청하기(새로고침없이 비동기 방식으로 요청하자)
+	//jsp, 서블릿에게 데이터 요청하기!! (새로고침 없이 비동기방식으로 요청하자)
 	$.ajax({
 		"url":"/place/list",
 		"type":"get",
-		"success":function(result,status,xhr){
-			//json으로 결과를 받아야함
-			
-			//서버로부터 받은 데이터가 json문자열인 경우 파싱을 해야한다
-			var json =JSON.parse(result);
+		"success":function(result, status, xhr){
+			//console.log(result);		
+			//서버로 부터 받은 데이터가 json문자열인 경우 파싱을 해야 한다 
+			var json=JSON.parse(result);
 			//console.log(json);
+			
 			createMarker(json);
+		}		
+	});
+}
+
+//오라클에 등록되어있는 관광 및 맛집 리스트 가져오기(비동기)
+function getList(){
+	$.ajax({
+		"url":"/main/list.jsp",
+		"type":"get",
+		success:function(result,status,xhr){
+			alert(result);
+			createMarker(JSON.parse(result));
 		}
 	});
 }
+
+function regist(){
+	//스트링 데이터 뿐만 아니라, 바이너리 파일도 포함된 데이터를 비동기로 등록 요청하자!!
+	//var formData = $("form").serialize(); //폼을 구성하는 모든 파라미터요소들을 전송할 수 있는 직렬화상태로~
+	var formData = new FormData(document.querySelector("form"));//바이너리 데이터 전송이 가능한 객체
+	
+	$.ajax({
+		url:"/main/regist.jsp",		
+		type:"post", 
+		enctype:"multipart/form-data",
+		data:formData, 
+		contentType:false, //주의
+		processData:false,//주의
+		success:function(result, status, xhr){
+			alert(result);
+		}
+	});
+}
+
+$(function(){
+	getList();
+	var bt_regist = $("input[type='button']")[1]; //2번째 버튼
+	$(bt_regist).click(function(){
+		regist();
+	});
+});
+
 </script>
 </head>
 <body>
 
 	<div class="wrapper">
 		<div class="leftSide">
-			<input type="button" value="공공 데이터 Load" onClick="loadFromXML()">
-			<p>
-			<p>
-			<!-- 
+			<form enctype="multipart/form-data">
+				<input type="button" value="공공 데이터 Load" onClick="loadFromXML()">
+				<p>
+				<p>
+					<!-- 
 			<select>
 				<option>시.도 선택</option>
 			</select>
@@ -105,14 +138,16 @@ function loadFromXML(){
 				<option>구.군 선택</option>
 			</select>
 			-->
-			<input type="text" placeholder="제목...">
-			<textarea placeholder="내용..." style="height:200px"></textarea>
-			<input type="text" placeholder="위도...">
-			<input type="text" placeholder="경도...">
-			<input type="file">
+			<input type="text" name="title" placeholder="제목...">
+			<textarea name="content" placeholder="내용..." style="height: 200px"></textarea>
+			<input  type="text"name= "addr1" placeholder="주소"> 
+			<input type="text" name= "mapy" placeholder="위도..."> 
+			<input type="text"name = "mapx"placeholder="경도..."> 
+			<input name = "storeImg" type="file">
 			<p>
-			<input type="button" value="썸네일 등록">
-			
+			<input type="button" value="관광지 등록">
+		</form>
+
 		</div>
 		<div id="content">우측</div>
 	</div>

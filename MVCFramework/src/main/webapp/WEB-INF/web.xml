@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>MVCFramework</display-name>
+  
+  <!-- MVC 프레임워크에서는 클라이언트의 매 요청마다 1:1 대응하는 컨트롤러를 직접 매핑하지않는다
+  	왜? 이렇게 될 경우 업무의 효율성이 떨어진다. 또한 매핑코드가 너무 비대해진다
+   -->
+  <servlet>
+  	<servlet-name>dispatcher</servlet-name>
+  	<servlet-class>com.koreait.mvcframework.controller.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+</web-app>

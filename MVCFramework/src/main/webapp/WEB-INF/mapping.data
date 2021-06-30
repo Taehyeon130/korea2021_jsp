@@ -1,0 +1,8 @@
+#Properties 객체로 해석할 수 있는 데이터를 작성함
+
+zerg = gross
+terran = weak
+protoss = strong
+
+/blood.do=com.koreait.mvcframework.controller.blood.BloodController
+/movie.do=com.koreait.mvcframework.controller.movie.MovieController
